@@ -44,9 +44,15 @@ class PodsAutoDisplay {
 				if (false !== $template) {
 		
 					//OPTION 1: is there a template? ///
-		
 					//we have a template, so let's use that
-					$result .= $pod->template($template_name);
+
+                    			//if this is an archive use post_type_archive
+                    			if ( is_post_type_archive( $post->post_type ) ) {
+                        			$result .= $pod->template($post->post_type.'_archive');
+                    			}
+                    			else {
+                        			$result .= $pod->template($template_name);
+                    			}
 		 
 				} else {
 		
